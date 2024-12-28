@@ -1,5 +1,7 @@
-package app;
+package app.renderer;
 
+import app.enums.DistanceEstimator;
+import app.geometry.ScreenQuad;
 import lwjglutils.OGLTextRenderer;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.*;

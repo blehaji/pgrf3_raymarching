@@ -1,4 +1,4 @@
-package app;
+package app.renderer;
 
 import lwjglutils.OGLTextRenderer;
 import lwjglutils.OGLUtils;

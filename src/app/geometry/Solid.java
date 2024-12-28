@@ -1,4 +1,4 @@
-package app;
+package app.geometry;
 
 import lwjglutils.OGLBuffers;
 import transforms.*;

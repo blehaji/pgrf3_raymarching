@@ -1,5 +1,6 @@
-package app;
+package app.geometry;
 
+import app.enums.DistanceEstimator;
 import lwjglutils.OGLBuffers;
 import lwjglutils.ShaderUtils;
 import lwjglutils.ToFloatArray;
