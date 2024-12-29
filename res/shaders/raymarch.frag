@@ -137,8 +137,8 @@ void fold_merger_sponge(inout vec4 p) {
         p.xyz = abs(p.xyz);
         mengerFold(p);
         p *= 3;
-        p.xyz -= vec3(2.0, 2.0, 0.0);
-        p.z = 1 - abs(p.z - 1);
+        p.xyz -= vec3(1.0, 1.0, 0.0);
+        p.z = .5 - abs(p.z - .5);
     }
 }
 
@@ -146,7 +146,7 @@ void fold_sierpinski_tetrahedron(inout vec4 p) {
     for (int i = 0; i < recursionLevel; ++i) {
         sierpinskiFold(p);
         p *= 2;
-        p.xyz -= vec3(1.0, 1.0, 1.0);
+        p.xyz -= vec3(.5, .5, .5);
     }
 }
 
@@ -155,7 +155,7 @@ void fold_menger_sierpinski_snowflake(inout vec4 p) {
         p.xyz = abs(p.xyz);
         mengerFold(p);
         p *= 3;
-        p.xyz -= vec3(2.0);
+        p.xyz -= vec3(1.0);
     }
 }
 
@@ -164,8 +164,8 @@ void fold_mosely_snowflake(inout vec4 p) {
         p.xyz = abs(p.xyz);
         mengerFold(p);
         p *= 3;
-        p.xyz -= vec3(2, 0.0, 0.0);
-        p.y = 1 - abs(p.y - 1);
+        p.xyz -= vec3(1, 0.0, 0.0);
+        p.y = .5 - abs(p.y - .5);
     }
 }
 
@@ -178,28 +178,28 @@ void fold_mosely_snowflake(inout vec4 p) {
 float de_menger_sponge(vec4 p) {
     float d = 1e20;
     fold_merger_sponge(p);
-    d = min(d, de_box(p, vec3(1.0)));
+    d = min(d, de_box(p, vec3(.5)));
     return d;
 }
 
 float de_sierpinski_tetrahedron(vec4 p) {
     float d = 1e20;
     fold_sierpinski_tetrahedron(p);
-    d = min(d, de_tetrahedron(p, 1.0));
+    d = min(d, de_tetrahedron(p, .5));
     return d;
 }
 
 float de_menger_sierpinski_snowflake(vec4 p) {
     float d = 1e20;
     fold_menger_sierpinski_snowflake(p);
-    d = min(d, de_box(p, vec3(1.0)));
+    d = min(d, de_box(p, vec3(.5)));
     return d;
 }
 
 float de_mosely_snowfalke(vec4 p) {
     float d = 1e20;
     fold_mosely_snowflake(p);
-    d = min(d, de_box(p, vec3(1.0)));
+    d = min(d, de_box(p, vec3(.5)));
     return d;
 }
 
@@ -391,7 +391,6 @@ void main() {
     float vignette = 1.0 - VIGNETTE_STRENGTH * length(screen_pos - 0.5);
     col += scene(p, ray, vignette, 0.0);
 
-//    outColor.xyz = clamp(vec3(uv, 0), 0.0, 1.0);
     outColor.xyz = clamp(col.xyz, 0.0, 1.0);
     outColor.w = min(col.w / MAX_DIST, 0.999);
 }
