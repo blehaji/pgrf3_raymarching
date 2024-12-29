@@ -253,6 +253,10 @@ vec4 col_mosely_snowflake(vec4 p) {
 }
 
 vec4 fractal_col(vec4 p) {
+    // repeating
+    if (repeatX) p.x = sin(p.x);
+    if (repeatY) p.y = sin(p.y);
+    if (repeatZ) p.z = sin(p.z);
 
     // static color
     if (!fancierColors) {
