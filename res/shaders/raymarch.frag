@@ -261,6 +261,10 @@ vec4 fractal_col(vec4 p) {
 
     // calculate color based on space folding functions
     switch (distanceEstimator) {
+        case CUBE:
+        return (vec4(10)*p)*vec4(0.4,0.1,0.7,1);
+        case SPHERE:
+        return max(p*vec4(10), vec4(0.6))*vec4(0.8,0,1,1);
         case MENGER_SPONGE:
         return col_menger_sponge(p);
         case SIERPINKSI_TETRAHEDRON:
