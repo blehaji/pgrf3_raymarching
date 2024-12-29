@@ -58,6 +58,12 @@ public class Renderer extends AbstractRenderer {
     }
 
     private void drawText() {
+        textRenderer.addStr2D(5, 25, "[F] Distance estimator: " + distanceEstimator.getName());
+        textRenderer.addStr2D(5, 45, "[C] Fancier colors: " + fancierColors);
+        textRenderer.addStr2D(5, 65, "[X] Repeat on X axis: " + repeatX);
+        textRenderer.addStr2D(5, 85, "[Y] Repeat on Y axis: " + repeatY);
+        textRenderer.addStr2D(5, 105, "[Z] Repeat on Z axis: " + repeatZ);
+
         textRenderer.addStr2D(width - 200, height - 10, "Raymarching, Jiří Bleha, PGRF3");
     }
 
