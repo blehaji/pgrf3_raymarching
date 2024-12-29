@@ -11,6 +11,7 @@ import transforms.Vec3D;
 import java.nio.DoubleBuffer;
 
 import static org.lwjgl.glfw.GLFW.glfwGetCursorPos;
+import static org.lwjgl.glfw.GLFW.glfwSetWindowShouldClose;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
 
@@ -99,6 +100,10 @@ public class Renderer extends AbstractRenderer {
     private final GLFWKeyCallback keyCallback = new GLFWKeyCallback() {
         @Override
         public void invoke(long window, int key, int scancode, int action, int mods) {
+            if ((key == GLFW.GLFW_KEY_ESCAPE || key == GLFW.GLFW_KEY_Q) && action == GLFW.GLFW_RELEASE) {
+                glfwSetWindowShouldClose(window, true);
+            }
+
             if (action == GLFW.GLFW_PRESS) {
                 onKey(key);
             }
